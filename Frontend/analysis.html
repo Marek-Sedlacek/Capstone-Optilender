@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>OptiLender - Analysis</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,900">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style-defaults.css">
+    <link rel="stylesheet" href="assets/css/demo-relevant.css">
+
+    <!-- Modernizr -->
+    <script src="assets/js/modernizr.min.js"></script>
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="assets/js/optilender_frontend.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main" class="m-scene">
+      <header class="page-header">
+        <nav class="page-nav">
+          <ul class="page-nav__list">
+            <li class="page-nav__item"><a href="index.html" class="page-nav__link">Home</a></li>
+            <li class="page-nav__item"><a href="javascript:;" class="page-nav__link is-active">Analysis</a></li>
+            <li class="page-nav__item"><a href="methodology.html" class="page-nav__link">Methodology</a></li>
+            <li class="page-nav__item"><a href="aboutus.html" class="page-nav__link">About Us</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- / page-header-->
+      <div class="page-content scene-main scene-main--fadein">
+        <h1>Analysis</h1>
+        <!--<img src="http://placehold.it/2000x500/ccc/000?text=An+image" alt="">-->
+        <!--<h3>Section title</h3>-->
+        <!--<p>Some texts</p>-->
+        <!--<img src="http://placehold.it/2000x500/ccc/000?text=An+image" alt="">-->
+
+        <section>
+          <!--<div id="myDiv" style="width: 1200px; height: 640px;">-->
+          <div id="myDiv">
+        </section>
+
+        <aside>
+          <br>
+          <br>
+          <select id="analysis_dropdown_goal">
+            <option selected disabled>Choose Your Investment Goal:</option>
+            <option value="1">I want to outperform the market</option>
+            <option value="2">I want a balanced portfolio</option>
+            <option value="3">I want a stable income</option>
+          </select>
+
+          <br>
+          <br>
+          <select id="analysis_dropdown_size">
+            <option selected disabled>Choose Your Investment Amount:</option>
+            <option value="1">Less Than $5,000</option>
+            <option value="2">Between $5,000 and $10,000</option>
+            <option value="3">More Than $10,000</option>
+          </select>
+          <br>
+          <br>
+
+          <form>
+            Allocations: <br>
+            <table id="Table_Allocations">
+              <tr>
+                <td>AA</td>
+                <td><input type="number" name="allocation_aa" id="allocation_aa" value=0></td>
+                <td>%</td>
+              </tr>
+              <tr>
+                <td>A</td>
+                <td><input type="number" name="allocation_a" id="allocation_a" value=0></td>
+                <td>%</td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td><input type="number" name="allocation_b" id="allocation_b" value=0></td>
+                <td>%</td>
+              </tr>
+              <tr>
+                <td>C</td>
+                <td><input type="number" name="allocation_c" id="allocation_c" value=0></td>
+                <td>%</td>
+              </tr>
+              <tr>
+                <td>D</td>
+                <td><input type="number" name="allocation_d" id="allocation_d" value=0></td>
+                <td>%</td>
+              </tr>
+            </table>
+
+            <input type="button" value="Go" onclick="analyze(true)"/>
+          </form>
+        </aside>
+
+          <!--Table-->
+        <!--["months_employed", "total_inquiries", "bankcard_utilization", "all208"]-->
+        <section>
+          <table id="myTable">
+            <tr>
+              <th></th>
+              <th> Rating Portfolio </th>
+              <th> Opti-Lender Portfolio </th>
+            </tr>
+            <tr>
+              <td>Months Employed</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Total Inquiries</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Bankcard Utilization</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>All208</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </section>
+
+
+      </div>
+      <!-- / page-content-->
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="assets/js/jquery.smoothState.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        storeLoanDataReal();
+        updateSelections();
+//        analyze(window.loan_data_real != null);
+        analyze(false);
+    </script>
+  </body>
+</html>

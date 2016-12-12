@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>OptiLender - Home</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,900">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style-defaults.css">
+    <link rel="stylesheet" href="assets/css/demo-relevant.css">
+
+    <!-- Modernizr -->
+    <script src="assets/js/modernizr.min.js"></script>
+
+  </head>
+  <body>
+    <div id="main" class="m-scene">
+      <header class="page-header page-header--homepage scene-nav">
+        <nav class="page-nav">
+          <ul class="page-nav__list">
+            <li class="page-nav__item"><a href="javascript:;" class="page-nav__link is-active">Home</a></li>
+            <li class="page-nav__item"><a href="analysis.html" class="page-nav__link">Analysis</a></li>
+            <li class="page-nav__item"><a href="methodology.html" class="page-nav__link">Methodology</a></li>
+            <li class="page-nav__item"><a href="aboutus.html" class="page-nav__link">About Us</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- / page-header-->
+      <div class="page-content page-content--homepage scene-main scene-main--fadein">
+        <h1>Opti-Lender</h1>
+        <h4>Opti-Lender uses Machine Learning to recommend portfolios of Prosper loans that consistently outperforms the market.</h4>
+
+        <br>
+        <br>
+
+        <p>Start by selecting your investment goal and size:</p>
+
+        <br>
+        <!--<img src="http://placehold.it/2000x500/ccc/000?text=An+image" alt="">-->
+
+        <select id="dropdown_goal">
+          <option selected disabled>Choose Your Investment Goal:</option>
+          <option value="1">I want to outperform the market</option>
+          <option value="2">I want a balanced portfolio</option>
+          <option value="3">I want a stable income</option>
+        </select>
+
+        <br>
+        <br>
+        <select id="dropdown_size">
+          <option selected disabled>Choose Your Investment Amount:</option>
+          <option value="1">Less Than $5,000</option>
+          <option value="2">Between $5,000 and $10,000</option>
+          <option value="3">More Than $10,000</option>
+        </select>
+
+        <br>
+        <br>
+        <input type="button" value="Optimize Portfolio" onclick="storeData()"/>
+
+        <!--<h3>Section title</h3>-->
+        <!--<p>Some text</p><img src="http://placehold.it/2000x500/ccc/000?text=An+image" alt="">-->
+      </div>
+      <!-- / page-content-->
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="assets/js/jquery.smoothState.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="assets/js/optilender_frontend.js"></script>
+    <script>
+        var bond_time_series = [];
+        readBondData(bond_time_series);
+
+        var prosper_grade_return_real = [];
+        readProsperGradeDataReal(prosper_grade_return_real);
+
+        var node_data_real = [];
+        readNodeDataReal(node_data_real);
+
+        //TODO: add code to change the goal and size selection in the dropdown based on currently stored data, mainly for users going back to home.
+        if (sessionStorage.getItem("investment_goal") != null) {
+            var goal = sessionStorage.getItem("investment_goal");
+            setDropdownValueByText(document.getElementById("dropdown_goal"), goal);
+        }
+
+        if (sessionStorage.getItem("investment_size") != null) {
+            var size = sessionStorage.getItem("investment_size");
+            setDropdownValueByText(document.getElementById("dropdown_size"), size);
+        }
+    </script>
+  </body>
+</html>

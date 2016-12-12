@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>OptiLender - Methodology</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,900">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style-defaults.css">
+    <link rel="stylesheet" href="assets/css/demo-relevant.css">
+
+    <!-- Modernizr -->
+    <script src="assets/js/modernizr.min.js"></script>
+
+  </head>
+  <body>
+    <div id="main" class="m-scene">
+      <header class="page-header">
+        <nav class="page-nav">
+          <ul class="page-nav__list">
+            <li class="page-nav__item"><a href="index.html" class="page-nav__link">Home</a></li>
+            <!--TODO: when switching from other pages to analysis page, stored values of goal, size, and weights are lost, below is some pointer-->
+            <!--<li class="page-nav__item"><a onclick="updateSelections()" href="analysis.html" class="page-nav__link">Analysis</a></li>-->
+            <!--<li class="page-nav__item"><a onclick="goToAnalysis()" href="analysis.html" class="page-nav__link">Analysis</a></li>-->
+            <li class="page-nav__item"><a href="analysis.html" class="page-nav__link">Analysis</a></li>
+            <li class="page-nav__item"><a href="javascript:;" class="page-nav__link is-active">Methodology</a></li>
+            <li class="page-nav__item"><a href="aboutus.html" class="page-nav__link">About Us</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- / page-header-->
+      <div class="page-content scene-main scene-main--fadein">
+        <h1>Methodology</h1>
+        <!--<p>Text1</p><img src="http://placehold.it/2000x500/ccc/000?text=An+image" alt="">-->
+        <!--<p>Text2</p>-->
+        <!--<p>Text3</p>-->
+          <p align="justify">Our goal for the OptiLender strategy is to outperform the returns produced by investing
+            using Prosper’s rating grade alone. Given a risk tolerance level in the form of a Prosper rating grade distribution,
+            our model should be able to recommend a pool of loans with comparable or lower risk that produces higher returns.
+            This is not to say we expect to outperform Prosper’s underlying pricing model.
+            Instead, we want to identify high return pockets within the general pool and make them visible to investors.
+          </p>
+
+          <br>
+          <br>
+
+          <p align="justify"> Our model uses a decision tree regressor algorithm to predict expected return.
+            This approach allows us to model a continuous variable, while maintaining the explainability of a tree.
+            The decision tree structure also classifies each loan in the portfolio into a end node, which is conducive
+            to our end goal of dividing the portfolio into high-performance and low-performance pools. The model considers
+            the borrower's rating grade, number of credit inquiries, monthly payments on outstanding debts, and seven other
+            customer attributes. The model is in fact a combination of six separate models: one tree built for each year
+            of originations since 2010. Each is calibrated only with the performance of accounts older than 12 months at
+            the beginning of the vintage to prevent retrospective prediction. As new data arrives, we will continue
+            the annual recalibration process.
+          </p>
+          <br>
+          <br>
+
+          <p align="justify"> We estimate the expected risk of each pool by randomly sampling 100 portfolios
+            of loans from each pool, and calculate the standard deviation of the returns on these portfolios.
+            The number of loans in a portfolio will depend on the investor's available capital. The model will then
+            recommend pools of loans whose expected risk is smaller and expected return is greater than those produced
+            by the rating grade distribution alone.
+          </p>
+        </div>
+      </div>
+      <!-- / page-content-->
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="assets/js/jquery.smoothState.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

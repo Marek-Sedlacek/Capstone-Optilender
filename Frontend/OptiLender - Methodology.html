@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)http://people.ischool.berkeley.edu/~myan/w210_final_deliverable/methodology.html -->
+<html class="history svg picture localstorage svgfilters svgasimg no-pointerevents video csscalc cssgradients no-csspositionsticky placeholder srcset scriptasync scriptdefer inlinesvg supports svgclippaths svgforeignobject smil no-hiddenscroll no-touchevents checked cssscrollbar cssvhunit cssvmaxunit cssvminunit cssvwunit no-forcetouch ligatures cssanimations csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside cssfilters flexbox flexboxlegacy no-flexboxtweener flexwrap cssmask no-scrollsnappoints"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>OptiLender - Methodology</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="./OptiLender - Methodology1_files/css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./OptiLender - Methodology1_files/style-defaults.css">
+    <link rel="stylesheet" href="./OptiLender - Methodology1_files/demo-relevant.css">
+
+    <!-- Modernizr -->
+    <script src="./OptiLender - Methodology1_files/modernizr.min.js.download"></script>
+
+    <!-- Plotly.js -->
+    <script src="./OptiLender - Methodology1_files/plotly-latest.min.js.download"></script><style></style>
+    <script src="./OptiLender - Methodology1_files/plotting.js.download"></script>
+
+
+  </head>
+  <body>
+    <div id="main" class="m-scene"><header class="page-header">
+        <nav class="page-nav">
+          <ul class="page-nav__list">
+            <li class="page-nav__item"><a href="http://people.ischool.berkeley.edu/~myan/w210_final_deliverable/index.html" class="page-nav__link">Home</a></li>
+            <!--TODO: when switching from other pages to analysis page, stored values of goal, size, and weights are lost, below is some pointer-->
+            <!--<li class="page-nav__item"><a onclick="updateSelections()" href="analysis.html" class="page-nav__link">Analysis</a></li>-->
+            <li class="page-nav__item"><a onclick="updateSelections()" href="http://people.ischool.berkeley.edu/~myan/w210_final_deliverable/analysis.html" class="page-nav__link">Analysis</a></li>
+            <li class="page-nav__item"><a href="javascript:;" class="page-nav__link is-active">Methodology</a></li>
+            <li class="page-nav__item"><a href="http://people.ischool.berkeley.edu/~myan/w210_final_deliverable/aboutus.html" class="page-nav__link">About Us</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- / page-header-->
+      <div class="page-content scene-main scene-main--fadein">
+        <h1>Methodology</h1>
+        <p align="justify">Our goal for the OptiLender strategy is to outperform the returns produced by investing using Prosper’s rating grade alone. Given a risk tolerance level in the form of a Prosper rating grade distribution, our model should be able to recommend a pool of loans with comparable or lower risk that produces higher returns. This is not to say we expect to outperform Prosper’s underlying pricing model. Instead, we want to identify high return pockets within the general pool and make them visible to investors.</p>
+		
+		<img src="./OptiLender - Methodology1_files/000" alt="">
+		
+        <p align="justify"> Our model uses a decision tree regressor algorithm to predict expected return. This approach allows us to model a continuous variable, while maintaining the explainability of a tree. The decision tree structure also classifies each loan in the portfolio into a end node, which is conducive to our end goal of dividing the portfolio into high-performance and low-performance pools. The model considers the borrower's rating grade, number of credit inquiries, monthly payments on outstanding debts, and seven other customer attributes. The model is in fact a combination of six separate models: one tree built for each year of originations since 2010. Each is calibrated only with the performance of accounts older than 12 months at the beginning of the vintage to prevent retrospective prediction. As new data arrives, we will continue the annual recalibration process.</p>
+		
+        <p align="justify"> We estimate the expected risk of each pool by randomly sampling 100 portfolios of loans from each pool, and calculate the standard deviation of the returns on these portfolios. The number of loans in a portfolio will depend on the investor's available capital. The model will then recommend pools of loans whose expected risk is smaller and expected return is greater than those produced by the rating grade distribution alone.</p>
+      </div>
+      <!-- / page-content--></div>
+
+    <!-- Scripts -->
+    <script src="./OptiLender - Methodology1_files/jquery-2.2.1.min.js.download"></script>
+    <script src="./OptiLender - Methodology1_files/jquery.smoothState.min.js.download"></script>
+    <script src="./OptiLender - Methodology1_files/main.js.download"></script>
+    <script>
+        storeLoanDataReal();
+        updateSelections();
+        analyze(false);
+    </script><svg id="js-plotly-tester" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: absolute; left: -10000px; top: -10000px; width: 9000px; height: 9000px; z-index: 1;"><path class="js-reference-point" d="M0,0H1V1H0Z" style="stroke-width: 0; fill: black;"></path></svg>
+  
+</body></html>
