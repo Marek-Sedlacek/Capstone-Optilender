@@ -1,5 +1,3 @@
-# Demo: CSS Tricks with smoothState.js
+# Frontend Solution
 
-Alternate demo demonstrates sidebar navigation with [smoothState.js](https://github.com/miguel-perez/smoothState.js).
-
-You can [view the demo here](https://rawgit.com/miguel-perez/smoothState.js/master/demos/sidevar/index.html).
+This section contains code for the frontend of [Opti-Lender](people.ischool.berkeley.edu/~myan/w210_final_deliverable/index.html).
