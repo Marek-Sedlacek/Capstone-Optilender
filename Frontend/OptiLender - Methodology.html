@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./OptiLender - Methodology1_files/css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="./OptiLender - Methodology1_files/style-defaults.css">
+    <link rel="stylesheet" href="style-defaults.css">
     <link rel="stylesheet" href="./OptiLender - Methodology1_files/demo-relevant.css">
 
     <!-- Modernizr -->
@@ -20,9 +20,8 @@
     <!-- Plotly.js -->
     <script src="./OptiLender - Methodology1_files/plotly-latest.min.js.download"></script><style></style>
     <script src="./OptiLender - Methodology1_files/plotting.js.download"></script>
-
-
   </head>
+
   <body>
     <div id="main" class="m-scene"><header class="page-header">
         <nav class="page-nav">
@@ -38,14 +37,69 @@
       </header>
       <!-- / page-header-->
       <div class="page-content scene-main scene-main--fadein">
-        <h1>Methodology</h1>
+        <h3>About P2P Lending</h3>
+        <p align="justify">Peer-to-peer lending (P2P) markets are places where borrowers can take out loans, and lenders can invest in pieces of loans. Since 2007 P2P lending has grown at an average pace of 84% per quarter, according to the US Federal Reserve Bank of Cleveland.</p>
+
+        <p align="justify">Borrowers like P2P lending because they can often get better rates than with other alternatives, and it's also very convenient to apply online. Lenders like P2P lending because they can make good returns, while diversifying their investments. They may also see a way to provide opportunities for others to realize their dreams (for example, through the non-profit P2P lender <a href="https://www.kiva.org/">Kiva</a>). In the last couple of years, institutional investors such as BBVA, Credit Suisse, and JP Morgan have allocated funds to P2P loans as a means to grow and diversify (see <a href="https://techcrunch.com/2016/01/30/the-state-of-p2p-lending/">techcrunch</a>).</p>
+
+        <p align="justify">The P2P lending market is new and dynamic, and it provides an interesting opportunity for study. Our project focuses on data from <a href="http://www.prosper.com">Prosper</a>, which is the oldest, and one of the largest P2P lending markets in the United States.</p>
+
+        <h3>Investor Challenges</h3>
+        <p align="justify">Like many P2P markets, Prosper offers an AutoInvest feature, which allows investors to select the proportions of their funds which they would like to go to certain loan categories. Prosper categorizes their loans with a letter grade from the scale: AA, A, B, C, D, E, HR. The AA and A loans are conservative investments, while the D, E, and HR loans are considered much more risky. The loans are rated based on Prosper's loan application process and underwriting reviews.</p>
+
+        <p align="justify">Time has shown that investors can make good returns through the convenient AutoInvest feature; however, there is opportunity to substantially improve upon these returns with the right strategy. This opportunity stems from the fact that AutoInvest is a simple allocation tool with broad proportion rules which chooses loans randomly; it is inherently suboptimal, and it is not meant for building the best portfolio to meet a particular investor's goals.</p>
+
+        <p align="justify">An investor who wishes to optimize their P2P loan portfolio, must confront the complexity of the P2P lending market. Loans come on the market every day. The investor must compare P2P options with other investment types. They must diversify their portfolio, and consider the levels of risk they are willing to face. The investor must also pick the loans on the market they want to invest in, and how much they would like to invest in each loan.</p>
+
+        <p align="justify">Since loans are amortized, the investor must also plan for a relatively constant stream of monthly payments (each loan runs on its own schedule); therefore, the complexity of reinvesting requires continuous attention. The optimizing investor must confront P2P lending challenges daily.</p>
+
+        <p align="justify">We believe this is a perfect opportunity for data science models to make an impact, by helping the investor to make smart decisions in building their loan portfolios. Prosper provides data with hundreds of metrics on loan listings. Using predictive models, we can build a better investment strategy.</p>
+
+        <p align="justify">Due to the complexity of the domain, and the resource limits of our team, we decided to focus primarily on the question of which loan portfolios will provide the best returns, given a certain appetite for risk.</p>
+
+        <h3>Methodology</h3>
         <p align="justify">Our goal for the OptiLender strategy is to outperform the returns produced by investing using Prosper’s rating grade alone. Given a risk tolerance level in the form of a Prosper rating grade distribution, our model should be able to recommend a pool of loans with comparable or lower risk that produces higher returns. This is not to say we expect to outperform Prosper’s underlying pricing model. Instead, we want to identify high return pockets within the general pool and make them visible to investors.</p>
-		
-		<img src="./OptiLender - Methodology1_files/000" alt="">
-		
+				
         <p align="justify"> Our model uses a decision tree regressor algorithm to predict expected return. This approach allows us to model a continuous variable, while maintaining the explainability of a tree. The decision tree structure also classifies each loan in the portfolio into a end node, which is conducive to our end goal of dividing the portfolio into high-performance and low-performance pools. The model considers the borrower's rating grade, number of credit inquiries, monthly payments on outstanding debts, and seven other customer attributes. The model is in fact a combination of six separate models: one tree built for each year of originations since 2010. Each is calibrated only with the performance of accounts older than 12 months at the beginning of the vintage to prevent retrospective prediction. As new data arrives, we will continue the annual recalibration process.</p>
 		
-        <p align="justify"> We estimate the expected risk of each pool by randomly sampling 100 portfolios of loans from each pool, and calculate the standard deviation of the returns on these portfolios. The number of loans in a portfolio will depend on the investor's available capital. The model will then recommend pools of loans whose expected risk is smaller and expected return is greater than those produced by the rating grade distribution alone.</p>
+		<center>
+			<figure>
+			  <img src="TrainingData.png" alt="" align="bottom" style="margin: 5px 0px">
+			  <figcaption>Fig1. - Rolling Window for Training Models</figcaption>
+			</figure>
+		</center>
+		
+        <p align="justify"> The model will produce an expected rate return for the next 12 months and classify the loans into leaves, but will return any information about volatility of returns. To estimate the expected risk, we randomly sample 100 portfolios of loans from each pool and calculate the average return for each sample. The standard deviation of these returns is our expected volatility for that particular leaf. The number of loans in a portfolio will depend on the investor's available capital.</p>
+		
+    		<p align="justify"> After calculating the expected risk and return of each pool of loans, we need a risk appetite from the user to select the optimal pools for to recommend. The user can provide a general investment strategy (eg. aggressive vs conservative) or a specific allocation of Propser rating grades. The tool will calculate the expected risk and return of pursuing this level of risk by rating grade alone. It will then compare the expected risk and return of each pool to the benchmark performance, and recommend pools of loans whose  risk is smaller and expected return is greater. Finally, the tool will plot the actual returns of the OptiLender recommended pools against the returns of the rating grade strategy, along with a few non-P2P benchmarks, to illustrate the additional return that could be expected.</p>
+		
+		<center>
+			<figure>
+			  <img src="ModelSelection.png" alt="" align="bottom" style="margin: 5px 0px">
+			  <figcaption>Fig2. - Optimal Pool Selection Process</figcaption>
+			</figure>
+		</center>
+
+
+        <h3>Limitations and Future Work</h3>
+        <p align="justify">While our model performed well for conservative-type loans (AA, A, B), it underperformed for riskier loans (C, D, E, HR). On closer examination we see several reasons why this may be the case. First, there were far fewer risky loans to train our model on than there were conservative loans. Second, risky loan returns by nature are harder to predict. Third, the derivation of one of our dependent variables (return rate) was less reliable for risky loans. </p>
+
+    <center>
+      <figure>
+        <img src="AA_vs_D_portfolios.png" alt="Scatter plot of AA vs. D portfolios" align="bottom" style="margin: 5px 0px">
+        <figcaption>Fig3. - AA vs. D Portfolios</figcaption>
+      </figure>
+    </center>
+
+        <p align="justify">We feel that if we had more time, it would be appropriate to train separate models for the riskier loans. We would also test more variable combinations and model types. In particular, the riskier loans would benefit from models that predict loss and default, in addition to predicting return.   </p>
+
+        <p align="justify">Furthermore, we could gain substantially by making our models time-horizon aware; that is, we could recognize that P2P loans come in daily, and our strategy could involve answering questions about whether to invest money now, or wait for likely opportunities. </p>
+
+
+    		<p align="justify">
+    			<a href="https://github.com/Marek-Sedlacek/Capstone-Optilender">For more information about the OptiLender project, please visit our GitHub page.</a>
+    		</p>
+		
       </div>
       <!-- / page-content--></div>
 
