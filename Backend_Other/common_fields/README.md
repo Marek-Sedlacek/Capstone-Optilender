@@ -1,0 +1,1 @@
+Here I investigate common fields (non-empty in 95% of the data records) from the Prosper data.
